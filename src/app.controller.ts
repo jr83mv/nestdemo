@@ -3,6 +3,7 @@
 import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { AppService } from './app.service';
 import { get } from 'http';
+import { productdto } from './product.dto';
 
 @Controller()
 export class AppController {
@@ -14,25 +15,48 @@ export class AppController {
   }
 
   @Get('products')
-  getproducts(): JSON {
-    return this.appService.getProduct();
+  async getAllProducts(): Promise<any> {
+    try {
+      const response = await this.appService.getAllProduct();
+      return response;
+    } catch (error) {
+      console.log({ error });
+      throw error;
+    }
   }
 
   @Post('product')
-  addProducts(@Body() data: any):JSON{
-    return this.appService.addProduct(data);
+  async addProducts(@Body() body: productdto):Promise<any>{
+    try {
+      const response = await this.appService.addProduct(body);
+      return response;
+    } catch (error) {
+      console.log({ error });
+      throw error;
+    }
 
   }
 
   @Put('product')
-  updateProduct(@Body() name:string):string{
-return this.appService.updateProduct(name);
+  async updateProduct(@Body() body: productdto):Promise<any>{
+    try {
+      const response = await this.appService.updateProduct(body);
+      return response;
+    } catch (error) {
+      console.log({ error });
+      throw error;
+    }
   }
 
-  // eslint-disable-next-line prettier/prettier
   @Delete("product")
-  removeProduct(@Body() name:string):string{
-    return this.appService.removeProduct(name);
+  async removeProduct(@Body() id:string):Promise<any>{
+    try {
+      const response = await this.appService.removeProduct(id);
+      return response;
+    } catch (error) {
+      console.log({ error });
+      throw error;
+    }
   }
 }
 
