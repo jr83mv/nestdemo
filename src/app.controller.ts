@@ -1,12 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable prettier/prettier */
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { AppService } from './app.service';
-import { get } from 'http';
 import { postdto } from './post.dto';
 import { userdto } from './user.dto';
-import { promises } from 'dns';
-
 
 @Controller()
 export class AppController {
@@ -124,7 +119,6 @@ export class AppController {
 
   @Delete('post/batch')
   async batchDeletePosts(@Body() body: any[]): Promise<any> {
-    
     try{
       const response=await this.appService.batchDeletePosts(body);
       return response;

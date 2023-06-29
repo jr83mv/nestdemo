@@ -41,27 +41,6 @@ export class DynamoDBService {
     }
   }
 
-  async query(
-    tableName: string,
-    expression: any,
-    expressionAttributeValues: any,
-  ): Promise<AWS.DynamoDB.DocumentClient.QueryOutput | null> {
-    const params: AWS.DynamoDB.DocumentClient.QueryInput = {
-      TableName: tableName,
-      KeyConditionExpression: expression,
-      ExpressionAttributeValues: expressionAttributeValues,
-    };
-    try {
-      const result = await this.dynamoDB.query(params).promise();
-      return result || null; // it will contain an `Items` property if the operation is successful
-    } catch (error) {
-      this.logger.error(`Failed to query items from ${tableName}: ${error}`);
-      return null;
-    }
-  }
-
- 
-
   async deleteItem(tableName: string, key: any): Promise<boolean> {
 
     const params: AWS.DynamoDB.DocumentClient.DeleteItemInput = {
@@ -115,20 +94,4 @@ export class DynamoDBService {
     throw new Error(`Failed to perform batch write for ${tableName}: ${error.message}`);
   }
 }
-
-// async batchDelete(tableName: string, request: any[]):Promise<any>{
-//     const params: AWS.DynamoDB.DocumentClient.BatchWriteItemInput = {
-//         RequestItems: {
-//           [tableName]: request,
-//         },
-//       };
-//       try {
-//         await this.dynamoDB.batchWrite(params).promise();
-//       } catch (error) {
-//         console.error(`Failed to perform batch write for ${tableName}`, error);
-//     throw new Error(`Failed to perform batch write for ${tableName}: ${error.message}`);
-//   }
-// }
-
-
 }

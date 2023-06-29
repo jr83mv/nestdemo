@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AwsSdkModule } from 'nest-aws-sdk';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import {ConfigService } from '@nestjs/config';
 import * as AWS from 'aws-sdk';
 import { DynamoDBService } from './dynamodb.service';
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';

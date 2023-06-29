@@ -4,7 +4,6 @@ import {postdto} from './post.dto';
 import { DynamoDBService } from './dynamodb';
 import { userdto } from './user.dto';
 import { v4 as uuidv4 } from 'uuid';
-import { resourceUsage } from 'process';
 
 @Injectable()
 export class AppService {

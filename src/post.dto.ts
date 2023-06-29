@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsArray, IsNotEmpty, IsUUID, IsNumber } from 'class-validator';
+import { IsString, IsArray, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class postdto{
 @ApiProperty({
